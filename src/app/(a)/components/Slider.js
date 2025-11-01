@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const slides = [
     {
         id: 1,
-        image: "/images/4.jpg",
+        image: "/images/1.jpg",
         title: "جدیدترین کالکشن",
         description: "استایل ورزشی خودت رو با جدیدترین محصولات تکمیل کن",
         buttonText: "خرید کن",
@@ -13,7 +13,7 @@ const slides = [
     },
     {
         id: 2,
-        image: "/images/2.jpg",
+        image: "/images/2.png",
         title: "کفش‌های پرطرفدار",
         description: "کفش‌های راحت و مدرن برای همه فعالیت‌ها",
         buttonText: "مشاهده محصولات",
