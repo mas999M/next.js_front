@@ -2,9 +2,9 @@ import DemographicCard from "@/app/components/ecommerce/DemographicCard";
 import { EcommerceMetrics } from "@/app/components/ecommerce/EcommerceMetrics";
 import MonthlySalesChart from "@/app/components/ecommerce/MonthlySalesChart";
 import MonthlyTarget from "@/app/components/ecommerce/MonthlyTarget";
-import RecentOrders from "@/app/components/ecommerce/RecentOrders";
 import StatisticsChart from "@/app/components/ecommerce/StatisticsChart";
 import React from "react";
+import Orders from "@/app/components/Orders";
 // import {Metadata} from "next";
 
 // export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function AdminHome() {
             </div>
 
             <div className="col-span-12 xl:col-span-7">
-                <RecentOrders />
+                <Orders />
             </div>
         </div>
     );
