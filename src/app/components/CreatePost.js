@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 import {useEffect, useState} from "react";
 
-export default function Product()
+export default function CreatePost()
 {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
     const [category , setCategory] = useState([]);
@@ -91,20 +91,20 @@ export default function Product()
 
     return(
         <>
-            <div className="bg-white border rounded-lg p-8 mx-auto my-8 max-w-lg shadow shadow-2xl">
+            <div className="bg-white border rounded-lg p-8 mx-auto max-w-lg shadow shadow-2xl">
                 <h2 className="text-2xl font-medium mb-4">Add Product ...</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Product Name</label>
+                        <label htmlFor="name" className="block text-gray-800 font-medium mb-2">Product Name</label>
                         <input type="text" id="name" name="name"
-                               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400 focus:text-black bg-white"
                                required onChange={(e) => setName(e.target.value)} value={name}/>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="price" className="block text-gray-700 font-medium mb-2">Price</label>
                         <input type="number" id="price" name="price"
-                               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-                               required onChange={(e)=> setPrice(e.target.value)} value={price}/>
+                               className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400 focus:text-black bg-white"
+                               required onChange={(e)=> setPrice(e.target.value)} value={price} placeholder={'price'}/>
                     </div>
                     <div className="mb-4">
 
@@ -116,7 +116,7 @@ export default function Product()
 
                             {category.map((cat)=>{
                                 return(
-                                        <option value={cat.id} key={cat.id}>-- {cat.name} --</option>
+                                    <option value={cat.id} key={cat.id}>-- {cat.name} --</option>
                                 )
                             })}
                         </select>
