@@ -37,8 +37,19 @@ const navItems: NavItem[] = [
         name: "Create Post",
         subItems: [
             { name: "Create Post", path: "/admin/create-post", pro: false },
-            { name: "show Post", path: "/admin/show-post", pro: false },
         ],
+    },
+    {
+        icon: <GridIcon />,
+        name: "Show User's",
+        subItems: [
+            { name: "show User", path: "/admin/show-user", pro: false },
+        ],
+    },
+    {
+        icon: <GridIcon />,
+        name: "Order",
+        subItems: [{ name: "Order", path: "/admin/order", pro: false }],
     },
   {
     icon: <CalenderIcon />,
