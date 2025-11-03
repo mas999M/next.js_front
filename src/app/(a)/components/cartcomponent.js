@@ -2,13 +2,13 @@
 
 // import {useEffect, useState} from "react";
 // import {fetch} from "next/dist/compiled/@edge-runtime/primitives";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 
 import {useEffect, useState} from "react";
 
 export default function CartComponent()
 {
-    // const xsrfToken = Cookies.get("XSRF-TOKEN");
+    const xsrfToken = Cookies.get("XSRF-TOKEN");
     //
     // const [cart, setCart] = useState([])
     //
@@ -89,6 +89,8 @@ export default function CartComponent()
                 headers: {
                     "Content-Type": "application/json",
                     'Accept': 'application/json',
+                    'X-XSRF-TOKEN': xsrfToken,
+
                 },
             });
                 const data = await response.json();

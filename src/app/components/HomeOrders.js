@@ -6,11 +6,10 @@
 import {useEffect, useState} from "react";
 import {Table, TableBody, TableCell, TableHeader, TableRow} from "./ui/table";
 import Badge from "./ui/badge/Badge";
-import Image from "next/image";
 import {useRouter} from "next/navigation";
 
 
-export default function Orders() {
+export default function HomeOrders() {
     const [tableData, setTableData] = useState([]);
     const router = useRouter();
 
@@ -132,45 +131,45 @@ export default function Orders() {
 
                                 <TableRow
                                     key={order.id}
-                                    onClick={() => router.push(`order/${order.id}`)}
+                                    onClick={() => router.push(`admin/order/${order.id}`)}
                                     className="hover:bg-gray-100 dark:bg-gray-800 cursor-pointer"
                                     style={{ display: "table-row" }} // مطمئن می‌شویم display درست باشد
                                 >
-                                        <TableCell className="py-3">
-                                            <div className="flex items-center gap-3">
-                                                <div className="h-[50px] w-[50px] overflow-hidden rounded-md ms-2">
-                                                   {order.user.name}
-                                                </div>
-                                                <div>
-                                                    <p className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                                                    </p>
-                                                    <span className="text-gray-500 text-theme-xs dark:text-gray-400">
+                                    <TableCell className="py-3">
+                                        <div className="flex items-center gap-3">
+                                            <div className="h-[50px] w-[50px] overflow-hidden rounded-md ms-2">
+                                                {order.user.name}
+                                            </div>
+                                            <div>
+                                                <p className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                                                </p>
+                                                <span className="text-gray-500 text-theme-xs dark:text-gray-400">
 
                       </span>
-                                                </div>
                                             </div>
-                                        </TableCell>
-                                        <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                                            {order.transaction_id}
-                                        </TableCell>
-                                        <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                                            {order.total}
-                                        </TableCell>
-                                        <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                                            <Badge
-                                                size="sm"
-                                                color={
-                                                    order.status === "finished"
-                                                        ? "success"
-                                                        : order.status === "pending"
-                                                            ? "warning"
-                                                            : "error"
-                                                }
-                                            >
-                                                {order.status}
-                                            </Badge>
-                                        </TableCell>
-                                    </TableRow>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                                        {order.transaction_id}
+                                    </TableCell>
+                                    <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                                        {order.total}
+                                    </TableCell>
+                                    <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                                        <Badge
+                                            size="sm"
+                                            color={
+                                                order.status === "finished"
+                                                    ? "success"
+                                                    : order.status === "pending"
+                                                        ? "warning"
+                                                        : "error"
+                                            }
+                                        >
+                                            {order.status}
+                                        </Badge>
+                                    </TableCell>
+                                </TableRow>
 
                             )
                         })}

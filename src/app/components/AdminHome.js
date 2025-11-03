@@ -4,7 +4,7 @@ import MonthlySalesChart from "@/app/components/ecommerce/MonthlySalesChart";
 import MonthlyTarget from "@/app/components/ecommerce/MonthlyTarget";
 import StatisticsChart from "@/app/components/ecommerce/StatisticsChart";
 import React from "react";
-import Orders from "@/app/components/Orders";
+import HomeOrders from "@/app/components/HomeOrders";
 // import {Metadata} from "next";
 
 // export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function AdminHome() {
             </div>
 
             <div className="col-span-12 xl:col-span-7">
-                <Orders />
+                <HomeOrders/>
             </div>
         </div>
     );
