@@ -1,6 +1,71 @@
+'use client'
+
 import Link from "next/link";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 
 export default function Navbar(){
+
+    // await fetch('http://localhost:3000/sanctum/csrf-cookie',{
+    //     credentials: "include",
+    // });
+    // const res = await fetch("http://localhost:8000/api/user",{
+    //     headers:{
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //     },
+    //     credentials:"include",
+    // });
+    // const data = await res.json();
+    // console.log(data);
+
+    const [showUser, setShowUser] = useState([]);
+
+    const router = useRouter();
+
+    useEffect(()=>{
+        const show = async () => {
+            try{
+                const res = await fetch('http://localhost:8000/api/user', {
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Accept': 'application/json'
+                    }
+                });
+                const data = await res.json();
+                setShowUser(data);
+                router.refresh();
+
+            }catch (err){
+                console.log(err);
+            }
+        };
+        show();
+    },[]);
+
+
+    const handleLogout = async (e) => {
+        e.preventDefault();
+        try{
+            await fetch('http://localhost:8000/sanctum/csrf-cookie',{
+                method: "get",
+                credentials: "include",
+            });
+
+            await fetch("http://localhost:8000/api/logout" , {
+                method: "GET",
+                credentials: 'include',
+            });
+            window.location.reload();
+        }catch(err){
+            console.log(err);
+        }
+
+
+
+    }
+
     return (
         <>
             <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -11,7 +76,9 @@ export default function Navbar(){
                                 <div className="bg-blue-600 group-hover:bg-blue-700 p-2 rounded-lg transition-colors duration-300">
                                     <i className="fas fa-cube text-white text-xl"></i>
                                 </div>
-                                <span className="ml-3 text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">AcmePro</span>
+                                <span className="ml-3 text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                                    MASSOD
+                                </span>
                             </a>
                         </div>
 
@@ -129,12 +196,13 @@ export default function Navbar(){
                                 <button className="flex items-center space-x-2 focus:outline-none group">
                                     <div className="relative">
                                         <div className="h-9 w-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 overflow-hidden avatar-ring">
-                                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" className="h-full w-full object-cover"/>
+                                            {/*<img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" className="h-full w-full object-cover"/>*/}
+                                            <img src={showUser.avatar} className={'h-full w-full object-cover'} alt="User"/>
                                         </div>
                                         <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-500 border-2 border-white"></span>
                                     </div>
                                     <div className="hidden lg:flex flex-col items-start">
-                                        <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-200">John Doe</span>
+                                        <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-200">{showUser.name}</span>
                                         <span className="text-xs text-gray-500">Admin</span>
                                     </div>
                                     <i className="fas fa-chevron-down text-xs text-gray-500 hidden lg:inline transition-transform duration-200 group-hover:text-blue-600"></i>
@@ -143,11 +211,11 @@ export default function Navbar(){
                                     <div className="px-4 py-3 border-b border-gray-100">
                                         <div className="flex items-center">
                                             <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 overflow-hidden mr-3">
-                                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" className="h-full w-full object-cover" />
+                                                <img src={showUser.avatar} alt="User" className="h-full w-full object-cover" />
                                             </div>
                                             <div>
-                                                <p className="font-medium text-gray-900">John Doe</p>
-                                                <p className="text-sm text-gray-500">john@example.com</p>
+                                                <p className="font-medium text-gray-900">{showUser.name}</p>
+                                                <p className="text-sm text-gray-500">{showUser.email}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -167,10 +235,10 @@ export default function Navbar(){
                                         <span className="ml-auto bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
                                     </a>
                                     <div className="border-t border-gray-100 my-1"></div>
-                                    <a href="#" className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
+                                    <div onClick={handleLogout} className="block px-4 py-2.5 text-red-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
                                         <i className="fas fa-sign-out-alt text-gray-400 mr-3 w-5 text-center"></i>
                                         Sign out
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
 
