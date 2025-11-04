@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import {useLogin} from "./LoginContext";
 
 export default function Navbar(){
 
@@ -22,6 +23,13 @@ export default function Navbar(){
     const [showUser, setShowUser] = useState([]);
 
     const router = useRouter();
+    const {logged} = useLogin();
+    console.log('--------navbar------',logged);
+    const [refresh , setRefresh] = useState(false);
+    if(logged && !refresh){
+        setRefresh(!refresh);
+        router.refresh();
+    }
 
     useEffect(()=>{
         const show = async () => {
@@ -35,14 +43,13 @@ export default function Navbar(){
                 });
                 const data = await res.json();
                 setShowUser(data);
-                router.refresh();
 
             }catch (err){
                 console.log(err);
             }
         };
         show();
-    },[]);
+    },[logged]);
 
 
     const handleLogout = async (e) => {

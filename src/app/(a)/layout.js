@@ -1,10 +1,13 @@
 import Navbar from "./components/navbar";
+import {LoginContext, LoginProvider} from "./components/LoginContext";
 
 export default function RootLayout({ children }) {
   return (
       <>
-          <Navbar/>
-          {children}
+          <LoginProvider>
+              <Navbar/>
+              {children}
+          </LoginProvider>
       </>
 
   );
