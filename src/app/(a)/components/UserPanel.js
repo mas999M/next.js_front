@@ -1,6 +1,7 @@
 'use client';
 
 import UserOrder from "./userOrder";
+import Link from "next/link";
 
 export default function UserPanel() {
     return (
@@ -12,7 +13,7 @@ export default function UserPanel() {
                     <div className="p-6 font-bold text-purple-700 text-2xl">AdminPanel</div>
                     <nav className="mt-8">
                         <a href="#" className="block py-3 px-6 text-gray-700 hover:bg-purple-100">Dashboard</a>
-                        <a href="#" className="block py-3 px-6 text-gray-700 hover:bg-purple-100">Users</a>
+                        <Link href={'panel/userupdate'} className="block py-3 px-6 text-gray-700 hover:bg-purple-100">Update User</Link>
                         <a href="#" className="block py-3 px-6 text-gray-700 hover:bg-purple-100">Analytics</a>
                         <a href="#" className="block py-3 px-6 text-gray-700 hover:bg-purple-100">Settings</a>
                     </nav>

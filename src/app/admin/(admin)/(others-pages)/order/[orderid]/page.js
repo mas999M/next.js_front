@@ -107,13 +107,13 @@ export default function OrderItems()
                                     isHeader
                                     className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                                 >
-                                    Product Name
+                                    Product Image
                                 </TableCell>
                                 <TableCell
                                     isHeader
                                     className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                                 >
-                                    Quantity
+                                    Product Name
                                 </TableCell>
                                 <TableCell
                                     isHeader
@@ -125,7 +125,13 @@ export default function OrderItems()
                                     isHeader
                                     className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                                 >
-                                    Status
+                                    Quantity
+                                </TableCell>
+                                <TableCell
+                                    isHeader
+                                    className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                                >
+                                    Category
                                 </TableCell>
                             </TableRow>
                         </TableHeader>
@@ -160,21 +166,24 @@ export default function OrderItems()
                                         {order.product.name}
                                     </TableCell>
                                     <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                                        {order.category}
+                                        {order.product.price}
                                     </TableCell>
                                     <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                                         <Badge
                                             size="sm"
                                             color={
-                                                order.status === "Delivered"
+                                                order.quantity > 1
                                                     ? "success"
                                                     : order.status === "Pending"
                                                         ? "warning"
                                                         : "error"
                                             }
                                         >
-                                            {order.status}
+                                            {order.quantity}
                                         </Badge>
+                                    </TableCell>
+                                    <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                                        {order.product.category.name}
                                     </TableCell>
                                 </TableRow>
                             ))}

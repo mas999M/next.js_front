@@ -67,13 +67,17 @@ export default function ShowUser() {
                 <table className="w-full text-md bg-white shadow-md rounded mb-4">
                     <tbody>
                     <tr className="border-b">
-                        <th className="text-left p-3 px-5">Name</th>
-                        <th className="text-left p-3 px-5">Email</th>
-                        <th className="text-left p-3 px-5">Role</th>
+                        <th className="text-left p-3 px-5">User Image</th>
+                        <th className="text-left p-3 px-5"> Name</th>
+                        <th className="text-left p-3 px-5"> Email</th>
+                        <th className="text-left p-3 px-5"> Role</th>
                         <th></th>
                     </tr>
                     {user.map((item) => (
                         <tr key={item.id} className="border-b hover:bg-orange-100 bg-gray-100">
+                            <td className="p-3 px-5">
+                                <img src={item.avatar} className={'w-18 h-18 rounded-full'} />
+                            </td>
                             <td className="p-3 px-5">
                                 <input
                                     type="text"

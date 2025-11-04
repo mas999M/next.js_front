@@ -96,6 +96,12 @@ export default function UserOrder() {
                                 isHeader
                                 className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                             >
+                                Customer Image
+                            </TableCell>
+                            <TableCell
+                                isHeader
+                                className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                            >
                                 Customer Name
                             </TableCell>
                             <TableCell
@@ -136,7 +142,7 @@ export default function UserOrder() {
                                     <TableCell className="py-3">
                                         <div className="flex items-center gap-3">
                                             <div className="h-[50px] w-[50px] overflow-hidden rounded-md ms-2">
-                                                {order.created_at}
+                                                <img src={order.user.avatar}/>
                                             </div>
                                             <div>
                                                 <p className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
@@ -146,6 +152,10 @@ export default function UserOrder() {
                       </span>
                                             </div>
                                         </div>
+                                    </TableCell>
+                                    <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                                        {order.user.name}
+
                                     </TableCell>
                                     <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                                         {order.transaction_id}
