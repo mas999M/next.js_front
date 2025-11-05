@@ -37,6 +37,7 @@ const navItems: NavItem[] = [
         name: "Create Post",
         subItems: [
             { name: "Create Post", path: "/admin/create-post", pro: false },
+            { name: "Update Post", path: "/admin/update-post", pro: false },
         ],
     },
     {
