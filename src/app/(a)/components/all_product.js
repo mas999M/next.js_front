@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 export default function AllProduct() {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
@@ -57,6 +58,7 @@ export default function AllProduct() {
         }
     };
 
+    console.log(allProducts);
     return (
         <>
             {/*<div className="container grid grid-cols-5 gap-8 mx-auto mt-22 max-w-6xl">*/}
@@ -64,7 +66,9 @@ export default function AllProduct() {
 
                 {allProducts.map((product, index) => {
                     return (
+
                             <div key={index} className="w-80 border border-blue-200 rounded-lg shadow-md p-4">
+                                <Link key={index} href={`product/${product.id}`}>
                                 <div className="relative">
     <span
         className="absolute top-2 left-2 bg-orange-400 text-white text-xs font-semibold px-2 py-1 rounded-full">
@@ -96,6 +100,8 @@ export default function AllProduct() {
 
 
                                 </div>
+                                </Link>
+
 
                                 <div className="mt-4">
                                     <h3 className="text-gray-800 font-medium text-base">
@@ -137,10 +143,11 @@ export default function AllProduct() {
                                             <span className="text-gray-400 text-sm line-through">$1500.00</span>
                                         </div>
 
+
                                         <form onSubmit={handleSubmit}>
                                             <input type={'hidden'} name={'productId'} value={product.id}/>
                                             <button type="submit"
-                                                className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center shadow text-white">
+                                                    className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center shadow text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
                                                      strokeLinecap="round" strokeLinejoin="round"
@@ -157,7 +164,6 @@ export default function AllProduct() {
                                     </div>
                                 </div>
                             </div>
-
 
                     )
                 })}
