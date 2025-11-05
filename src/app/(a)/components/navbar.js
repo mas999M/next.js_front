@@ -1,9 +1,9 @@
 'use client'
 
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
-import {useLogin} from "./LoginContext";
+import {LoginContext, useLogin} from "./LoginContext";
 
 export default function Navbar(){
 
@@ -23,13 +23,16 @@ export default function Navbar(){
     const [showUser, setShowUser] = useState([]);
 
     const router = useRouter();
-    const {logged} = useLogin();
+    const {logged , setLogged} = useLogin();
+    // const {logged , setLogged} = useContext(LoginContext);
     console.log('--------navbar------',logged);
     const [refresh , setRefresh] = useState(false);
-    if(logged && !refresh){
-        setRefresh(!refresh);
+    if(logged && refresh === true){
         router.refresh();
+        setLogged(!logged);
+        setRefresh(false);
     }
+    console.log('refreshed ==== ', refresh);
 
     useEffect(()=>{
         const show = async () => {
@@ -68,8 +71,6 @@ export default function Navbar(){
         }catch(err){
             console.log(err);
         }
-
-
 
     }
 

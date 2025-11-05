@@ -5,10 +5,13 @@ import {createContext, useContext, useState} from "react";
 export const LoginContext  = createContext();
 
 export function LoginProvider({ children }) {
+
     const [logged, setLogged] = useState(false);
+
     if (logged === true){
         console.log("After set true",logged);
     };
+
     console.log("Before set true",logged);
 
     return(
@@ -16,6 +19,7 @@ export function LoginProvider({ children }) {
             {children}
         </LoginContext.Provider>
     )
+
 }
 
 export const useLogin = () => useContext(LoginContext);

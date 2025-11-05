@@ -2,8 +2,11 @@
 
 import {useEffect, useState} from "react";
 import Cookies from "js-cookie";
+import {useRouter} from "next/navigation";
 
 export default function UpdateUser() {
+
+    const router = useRouter();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [bio, setBio] = useState('');
@@ -28,6 +31,8 @@ export default function UpdateUser() {
 
     const [showUser, setShowUser] = useState([]);
     const [showAvatar, setShowAvatar] = useState('');
+    const [updated , setUpdated] = useState(false);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,6 +53,11 @@ export default function UpdateUser() {
            {
                console.log('Successfully updated');
            }
+           const data = await res.json();
+           if(data.updated){
+               setUpdated(data.updated);
+               console.log(data.updated);
+           }
         }catch(err){
             console.log(err);
         }
@@ -66,13 +76,17 @@ export default function UpdateUser() {
                const data = await res.json();
                setShowUser(data);
                setShowAvatar(data.avatar);
+               if(updated){
+                   setUpdated(false);
+                   window.location.reload();
+               }
 
            }catch (err){
                console.log(err);
            }
        };
        show();
-    },[]);
+    },[updated]);
 
     return (
         <>
