@@ -14,6 +14,23 @@ export default function SingleProductPage()
     const [data , setData] = useState({});
     const [product, setProduct] = useState({});
     const [category , setCategory] = useState({});
+    const [number , setNumber] = useState(1);
+
+
+    const increse = (e) => {
+        e.preventDefault();
+        setNumber(prev => prev + 1);
+    }
+
+    const decrese = (e) => {
+        e.preventDefault();
+        setNumber(prev => (prev > 1 ? prev - 1 : 1) );
+    }
+
+
+    console.log(number);
+
+
 
     useEffect(()=>{
         const show = async () => {
@@ -41,7 +58,6 @@ export default function SingleProductPage()
     console.log("product", product);
 
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -58,7 +74,7 @@ export default function SingleProductPage()
                     "X-XSRF-TOKEN": xsrfToken,
                 },
                 credentials: "include",
-                body: JSON.stringify({ id: product.id }),
+                body: JSON.stringify({ id: product.id , quantity: number}),
             });
         } catch (err) {
             console.log(err);
@@ -66,9 +82,6 @@ export default function SingleProductPage()
     };
 
     console.log("product_id", product.id);
-
-
-
 
     return (
         <>
@@ -161,8 +174,12 @@ export default function SingleProductPage()
                             <div className="mb-6">
                                 <label htmlFor="quantity"
                                        className="block text-sm font-medium text-gray-700 mb-1">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" min="1"
-                                       className="w-12 text-center rounded-md border-gray-300  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                <button className={'rounded-lg me-0.5 bg-red-500 w-6 h-6 text-white'} onClick={decrese}>-</button>
+
+                                <input type="text" value={number}
+                                       className="w-12 text-center rounded-md border-gray-300 text-white  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                                <button className={'rounded-lg ms-0.5 bg-blue-500 w-6 h-6 text-white'} onClick={increse}>+</button>
+
                             </div>
 
                             <div className="flex space-x-4 mb-6">

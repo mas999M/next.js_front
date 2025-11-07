@@ -106,7 +106,7 @@ export default function SingleUpdateProduct()
     return(
         <>
             <div className="container mx-auto p-4 bg-stone-200 shadow-2xl">
-                <h1 className="text-3xl font-bold text-black mb-6">Update User</h1>
+                <h1 className="text-3xl font-bold text-black mb-6">Update Product</h1>
                 <div className="rounded-3xl">
                     <img src={product.image_url} className="w-34 h-34 rounded-4xl" alt="avatar" />
                 </div>
