@@ -4,35 +4,39 @@ import Link from "next/link";
 import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {LoginContext, useLogin} from "./LoginContext";
+import {useCart} from "./cartContext";
 
 export default function Navbar(){
 
-    // await fetch('http://localhost:3000/sanctum/csrf-cookie',{
-    //     credentials: "include",
-    // });
-    // const res = await fetch("http://localhost:8000/api/user",{
-    //     headers:{
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     credentials:"include",
-    // });
-    // const data = await res.json();
-    // console.log(data);
+
 
     const [showUser, setShowUser] = useState([]);
 
     const router = useRouter();
     const {logged , setLogged} = useLogin();
-    // const {logged , setLogged} = useContext(LoginContext);
+
+    const {cart} = useCart();
+
     console.log('--------navbar------',logged);
+
     const [refresh , setRefresh] = useState(false);
+
     if(logged && refresh === true){
         router.refresh();
         setLogged(!logged);
         setRefresh(false);
     }
     console.log('refreshed ==== ', refresh);
+
+    const [number , setNumber] = useState(0);
+    // console.log('number ====', number);
+
+    useEffect(() => {
+
+        console.log('number============================================================' , cart);
+        setNumber(cart);
+
+    },[cart]);
 
     useEffect(()=>{
         const show = async () => {
@@ -54,6 +58,23 @@ export default function Navbar(){
         show();
     },[logged]);
 
+
+    const [catShow , setCatShow] = useState([]);
+
+    useEffect(()=>{
+        const showCategory = async () => {
+            try{
+                const res = await fetch("http://localhost:8000/api/category",{
+                    credentials:'include',
+                });
+                const data =await res.json();
+                setCatShow(data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        showCategory();
+    },[])
 
     const handleLogout = async (e) => {
         e.preventDefault();
@@ -80,14 +101,18 @@ export default function Navbar(){
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex items-center">
-                            <a href="#" className="flex items-center group">
+
+                            <Link href={'/'} className={'flex items-center group'}>
+
                                 <div className="bg-blue-600 group-hover:bg-blue-700 p-2 rounded-lg transition-colors duration-300">
                                     <i className="fas fa-cube text-white text-xl"></i>
                                 </div>
                                 <span className="ml-3 text-xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
                                     MASSOD
                                 </span>
-                            </a>
+
+                            </Link>
+
                         </div>
 
                         <div className="hidden md:flex items-center space-x-1">
@@ -106,23 +131,14 @@ export default function Navbar(){
                                 </button>
                                 <div className="dropdown-menu absolute left-0 mt-2 w-56 bg-white rounded-lg shadow-xl py-1 z-50 opacity-0 invisible transition-all duration-300 transform -translate-y-2 border border-gray-100">
                                     <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">Solutions</div>
-                                    <a href="#" className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
-                                        <i className="fas fa-laptop text-blue-500 mr-3 w-5 text-center"></i>
-                                        Software Suite
-                                    </a>
-                                    <a href="#" className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
-                                        <i className="fas fa-server text-blue-500 mr-3 w-5 text-center"></i>
-                                        Cloud Services
-                                    </a>
-                                    <a href="#" className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
-                                        <i className="fas fa-mobile-screen text-blue-500 mr-3 w-5 text-center"></i>
-                                        Mobile Apps
-                                    </a>
-                                    <div className="border-t border-gray-100 my-1"></div>
-                                    <a href="#" className="block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
-                                        <i className="fas fa-star text-yellow-400 mr-3 w-5 text-center"></i>
-                                        Featured Products
-                                    </a>
+                                    {catShow.map((cate , index)=>{
+                                        return(
+                                            <Link key={index} href={`../category/${cate.id}`} className="cursor-pointer block px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 flex items-center transition-colors duration-200">
+                                                <i className="fas fa-laptop text-blue-500 mr-3 w-5 text-center"></i>
+                                                {cate.name}
+                                            </Link>
+                                        )
+                                    })}
                                 </div>
                             </div>
 
@@ -192,10 +208,13 @@ export default function Navbar(){
                                 <span className="sr-only">Search</span>
                             </button>
 
-                            <button className="p-2 text-gray-600 hover:text-blue-600 rounded-full hover:bg-gray-100 transition-colors duration-200 relative">
-                                <i className="fas fa-bell"></i>
-                                <span className="sr-only">Notifications</span>
-                                <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-white"></span>
+                            {/*cart emoji*/}
+                            <button onClick={() => router.push('/cart')}  className="p-2 text-gray-600 hover:text-blue-600 rounded-full hover:bg-gray-100 transition-colors duration-200 relative">
+                                <i className="">
+                                    <i className="fa-solid fa-cart-plus"></i>
+                                </i>
+                                <span className="sr-only"></span>
+                                <span className="absolute top-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white text-green-500">{number}</span>
                             </button>
 
                             <div className="hidden md:block h-6 w-px bg-gray-200"></div>

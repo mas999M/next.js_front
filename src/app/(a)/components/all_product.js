@@ -3,9 +3,13 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import {useCart} from "./cartContext";
 
 export default function AllProduct() {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
+
+    const {cart , CartImprove} = useCart();
+    console.log('this is cart = ',cart);
 
     const [allProducts, setAllProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,6 +37,8 @@ export default function AllProduct() {
         fetchProducts();
     }, [currentPage]);
 
+    const quantity = 1;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const pid = e.target.productId.value;
@@ -43,7 +49,7 @@ export default function AllProduct() {
                 credentials: "include",
             });
 
-            await fetch(`http://localhost:8000/api/add`, {
+           const res = await fetch(`http://localhost:8000/api/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -51,8 +57,13 @@ export default function AllProduct() {
                     "X-XSRF-TOKEN": xsrfToken,
                 },
                 credentials: "include",
-                body: JSON.stringify({ id: pid }),
+                body: JSON.stringify({ id: pid  , quantity : quantity }),
             });
+           const data = await res.json();
+           console.log(data);
+           if(data === 'added'){
+              CartImprove();
+           }
         } catch (err) {
             console.log(err);
         }
@@ -67,7 +78,7 @@ export default function AllProduct() {
                 {allProducts.map((product, index) => {
                     return (
 
-                            <div key={index} className="w-80 border border-blue-200 rounded-lg shadow-md p-4">
+                            <div key={index} className="w-80  border border-blue-200 rounded-lg shadow-md p-4">
                                 <Link key={index} href={`product/${product.id}`}>
                                 <div className="relative">
     <span
