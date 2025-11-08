@@ -21,7 +21,7 @@ export default function UpdatePostComponent()
                 await fetch("http://localhost:8000/sanctum/csrf-cookie",{
                     credentials: "include",
                 });
-                const res = await fetch("http://localhost:8000/api/products",{
+                const res = await fetch("http://localhost:8000/api/admin/products",{
                     method: "GET",
                     headers:{
                         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export default function UpdatePostComponent()
                 });
                 const data = await res.json();
                 setTableData(data.data);
-                console.log(data);
+                console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatttt',data);
             }catch(e){
                 console.error('errrrrrrrrrrrrrrrrrrror',e);
             }

@@ -3,10 +3,13 @@
 import Cookies from "js-cookie";
 import {useState} from "react";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 
 export default function RegisterComponent()
 {
+
+    const router = useRouter();
 
     const xsrfToken = Cookies.get('XSRF-TOKEN');
 
@@ -36,6 +39,7 @@ export default function RegisterComponent()
             },
             credentials: "include",
         });
+        router.push("/login");
 
     }
 

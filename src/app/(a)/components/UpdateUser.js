@@ -63,30 +63,30 @@ export default function UpdateUser() {
         }
     }
 
-    useEffect(()=>{
-       const show = async () => {
-           try{
-               const res = await fetch('http://localhost:8000/api/user', {
-                   credentials: "include",
-                   headers: {
-                       "Content-Type": "application/json",
-                       'Accept': 'application/json'
-                   }
-               });
-               const data = await res.json();
-               setShowUser(data);
-               setShowAvatar(data.avatar);
-               if(updated){
-                   setUpdated(false);
-                   window.location.reload();
-               }
-
-           }catch (err){
-               console.log(err);
-           }
-       };
-       show();
-    },[updated]);
+    // useEffect(()=>{
+    //    const show = async () => {
+    //        try{
+    //            const res = await fetch('http://localhost:8000/api/user', {
+    //                credentials: "include",
+    //                headers: {
+    //                    "Content-Type": "application/json",
+    //                    'Accept': 'application/json'
+    //                }
+    //            });
+    //            const data = await res.json();
+    //            setShowUser(data);
+    //            setShowAvatar(data.avatar);
+    //            if(updated){
+    //                setUpdated(false);
+    //                window.location.reload();
+    //            }
+    //
+    //        }catch (err){
+    //            console.log(err);
+    //        }
+    //    };
+    //    show();
+    // },[updated]);
 
     return (
         <>

@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from "react";
 
-import {useRouter} from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 import {Table, TableBody, TableCell, TableHeader, TableRow} from "../../components/ui/table";
 import Badge from "../../components/ui/badge/Badge";
 
@@ -11,29 +11,33 @@ export default function UserOrder() {
     const [tableData, setTableData] = useState([]);
     const router = useRouter();
 
-    useEffect(() => {
-        const show = async () => {
-            try{
-                await fetch("http://localhost:8000/sanctum/csrf-cookie",{
-                    credentials: "include",
-                });
-                const res = await fetch("http://localhost:8000/api/user/orders",{
-                    method: "GET",
-                    headers:{
-                        "Content-Type": "application/json",
-                        'Accept': 'application/json',
-                    },
-                    credentials:"include",
-                });
-                const data = await res.json();
-                setTableData(data);
-                console.log(data);
-            }catch(e){
-                console.error('errrrrrrrrrrrrrrrrrrror',e);
-            }
-        }
-        show();
-    },[])
+    // useEffect(() => {
+    //     const show = async () => {
+    //         try{
+    //             await fetch("http://localhost:8000/sanctum/csrf-cookie",{
+    //                 credentials: "include",
+    //             });
+    //             const res = await fetch("http://localhost:8000/api/user/orders",{
+    //                 method: "GET",
+    //                 headers:{
+    //                     "Content-Type": "application/json",
+    //                     'Accept': 'application/json',
+    //                 },
+    //                 credentials:"include",
+    //             });
+    //             if(res.status === 401){
+    //                 console.log('+++status+++',res.status);
+    //                 redirect("/");
+    //             }
+    //             const data = await res.json();
+    //             setTableData(data);
+    //             console.log(data);
+    //         }catch(e){
+    //             console.error('errrrrrrrrrrrrrrrrrrror',e);
+    //         }
+    //     }
+    //     show();
+    // },[])
     return (
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
             <div className="flex flex-col gap-2 mb-4 sm:flex-row sm:items-center sm:justify-between">

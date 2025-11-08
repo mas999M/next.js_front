@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import {useCart} from "./cartContext";
+import {useRouter} from "next/navigation";
 
 export default function AllProduct() {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
+    const router = useRouter();
 
     const {cart , CartImprove} = useCart();
     console.log('this is cart = ',cart);
@@ -59,8 +61,14 @@ export default function AllProduct() {
                 credentials: "include",
                 body: JSON.stringify({ id: pid  , quantity : quantity }),
             });
+           console.log('+++++++++++++++++++......data.......++++++++',res);
+           if(res.status === 401){
+               console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+               router.push('/login');
+           }
            const data = await res.json();
            console.log(data);
+
            if(data === 'added'){
               CartImprove();
            }
@@ -183,7 +191,7 @@ export default function AllProduct() {
             {/*</div>*/}
 
             {/* Pagination */}
-            <div className="flex justify-center mt-8 gap-2">
+            <div className="flex justify-center bg-sky-300 gap-2 mt-20 sm:bg-red-600 md:bg-sky-300">
                 <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
