@@ -26,6 +26,9 @@ export default function OrderItems()
                 });
                 const data = await res.json();
                 setOrderItems(data);
+                if(res.status === 401){
+                    console.log('assssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',res.status);
+                }
 
             }catch(err){
                 console.log(err.message);

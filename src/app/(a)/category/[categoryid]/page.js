@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import {useCart} from "../../components/cartContext";
-import {useParams} from "next/navigation";
+import {useParams, useRouter} from "next/navigation";
+import {router} from "next/client";
 
 export default function AllProduct() {
     const params = useParams();
     const {categoryid} = params;
     const xsrfToken = Cookies.get("XSRF-TOKEN");
+    const router = useRouter();
 
     const {cart , CartImprove} = useCart();
     console.log('this is cart = ' , cart);
@@ -70,6 +72,9 @@ export default function AllProduct() {
                 credentials: "include",
                 body: JSON.stringify({ id: pid  , quantity : quantity }),
             });
+            if(res.status === 401){
+                router.push('/login');
+            }
             const data = await res.json();
             console.log(data);
             if(data === 'added'){

@@ -24,7 +24,7 @@ export default function BeforeHome() {
                     },
                 });
                 const data = await res.json();
-                console.log(data);
+                console.log('this is user ==>  ',data);
                 if(data.role !== 'admin'){
                     router.push('/');
                 }else{
@@ -38,7 +38,7 @@ export default function BeforeHome() {
         effect();
     })
 
-    if(loading === false){
+    if(!loading){
         return (
             <>
                 <div

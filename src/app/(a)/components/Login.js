@@ -17,6 +17,26 @@ export default function Login() {
     const {logged , setLogged} = useContext(LoginContext);
     // const [logged , setToggle] = useContext(LoginContext);
 
+
+    useEffect(() => {
+        const ss = async () => {
+
+            const res = await fetch('http://localhost:8000/api/user', {
+                credentials: "include",
+            });
+            if(res.ok){
+                setLogged(true); // تغییر وضعیت logged به true
+                router.replace('/');
+            }else{
+                // setLoading(false);
+            }
+
+        }
+        ss();
+    })
+
+
+
     console.log("logged", logged);  // این برای دیدن مقدار اولیه در هر بار رندر
 
     const handleSubmit = async (e) => {

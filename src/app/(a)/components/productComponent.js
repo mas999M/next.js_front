@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import {useCart} from "./cartContext";
+import {useRouter} from "next/navigation";
 
 export default function ProductComponent() {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
+    const router = useRouter();
 
     const {cart , CartImprove} = useCart();
     console.log('this is cart = ',cart);
@@ -61,6 +63,9 @@ export default function ProductComponent() {
                 credentials: "include",
                 body: JSON.stringify({ id: pid  , quantity : quantity }),
             });
+            if(res.status === 401){
+                router.push('/login');
+            }
             const data = await res.json();
             console.log(data);
             if(data === 'added'){
@@ -72,33 +77,6 @@ export default function ProductComponent() {
     };
 
 
-
-    //
-    // const handleSearch = async (e) => {
-    //     e.preventDefault();
-    //     try{
-    //         await fetch('http://localhost:8000/sanctum/csrf-cookie', {
-    //             credentials: "include",
-    //         })
-    //         const res = await fetch("http://localhost:8000/api/search", {
-    //             method: "post",
-    //             credentials: "include",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 "Accept": "application/json",
-    //                 "X-XSRF-TOKEN": xsrfToken,
-    //             },
-    //             body: JSON.stringify({
-    //                 search: search,
-    //             })
-    //         });
-    //         const data = await res.json();
-    //         console.log('new searchbar : ',data);
-    //         setAllProducts(data);
-    //     }catch(err){
-    //         console.log(err);
-    //     }
-    // }
 
     const [search , setSearch] = useState("");
 
@@ -176,7 +154,7 @@ export default function ProductComponent() {
 
 
             {/*<div className="container grid grid-cols-5 gap-8 mx-auto mt-22 max-w-6xl">*/}
-            <div className="grid grid-cols-4 h-screen gap-6 container mx-auto p-10">
+            <div className="grid grid-cols-4 gap-6 container mx-auto p-10 ">
 
                 {allProducts.map((product, index) => {
                     return (
