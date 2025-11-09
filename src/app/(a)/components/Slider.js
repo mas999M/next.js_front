@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const slides = [
     {
@@ -43,7 +44,7 @@ export default function Slider() {
     return (
         <div className="slider">
             {slides.map((slide, index) => (
-                <div
+                <Link href={'/product'}> <div
                     key={slide.id}
                     className={`slide ${index === current ? "active" : ""}`}
                     style={{ backgroundImage: `url(${slide.image})` }}
@@ -52,10 +53,10 @@ export default function Slider() {
                         <div className="content">
                             <h2>{slide.title}</h2>
                             <p>{slide.description}</p>
-                            <a href={slide.buttonLink} className="btn">{slide.buttonText}</a>
+                            <div className="cursor-pointer btn">{slide.buttonText}</div>
                         </div>
                     )}
-                </div>
+                </div></Link>
             ))}
             <style jsx>{`
                 .slider {
@@ -63,6 +64,7 @@ export default function Slider() {
                     height: 80vh;
                     position: relative;
                     overflow: hidden;
+                    opacity: 90%;
                 }
                 .slide {
                     position: absolute;
@@ -103,6 +105,7 @@ export default function Slider() {
                     font-weight: bold;
                     border-radius: 5px;
                     transition: background 0.3s ease;
+                    cursor: pointer;
                 }
                 .btn:hover {
                     background: #555;
