@@ -219,7 +219,7 @@ export default function AllProduct() {
 
             {/*</div>*/}
 
-            {/* Pagination */}
+             {/*Pagination*/}
             {/*<div className="flex justify-center mt-8 gap-2">*/}
             {/*    <button*/}
             {/*        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}*/}

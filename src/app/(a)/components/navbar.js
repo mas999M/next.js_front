@@ -29,7 +29,26 @@ export default function Navbar(){
     console.log('refreshed ==== ', refresh);
 
     const [number , setNumber] = useState(0);
-    // console.log('number ====', number);
+    const [profile , setProfile] = useState(false);
+
+
+    useEffect(() => {
+        const profile = async () => {
+            const res = await fetch("http://localhost:8000/api/user",{
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json',
+                },
+                credentials: "include",
+            });
+            console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&this is data => ',res);
+            if(res.status !== 401) {
+                setProfile(true);
+            }
+        }
+        profile();
+    });
 
     useEffect(() => {
 
@@ -38,6 +57,7 @@ export default function Navbar(){
 
     },[cart]);
 
+    const [admin, setAdmin] = useState(false);
     useEffect(()=>{
         const show = async () => {
             try{
@@ -50,7 +70,9 @@ export default function Navbar(){
                 });
                 const data = await res.json();
                 setShowUser(data);
-
+                if(data.role === "admin"){
+                    setAdmin(true);
+                }
             }catch (err){
                 console.log(err);
             }
@@ -94,6 +116,7 @@ export default function Navbar(){
         }
 
     }
+
 
     return (
         <>
@@ -215,13 +238,13 @@ export default function Navbar(){
                                 </div>
                             </div>
 
-                            <a href="#"
-                               className="nav-link text-gray-700 hover:text-blue-600 px-4 py-2 flex items-center rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                            {admin && <Link href="/admin"
+                                   className="nav-link text-amber-600 hover:text-blue-600 px-4 py-2 flex items-center rounded-lg hover:bg-blue-50 transition-colors duration-200">
                                 <i className="fas fa-envelope mr-2"></i>
-                                Contact
+                                Admin Panel
                                 <span
-                                    className="ml-2 bg-blue-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">New</span>
-                            </a>
+                                    className="ml-2 bg-blue-600 text-yellow-200 text-xs font-bold px-2 py-0.5 rounded-full">New</span>
+                            </Link>}
                         </div>
 
                         <div className="flex items-center space-x-3">
@@ -244,7 +267,7 @@ export default function Navbar(){
 
                             <div className="hidden md:block h-6 w-px bg-gray-200"></div>
 
-                            <div className="dropdown relative">
+                            {profile ? <div className="dropdown relative">
                                 <button className="flex items-center space-x-2 focus:outline-none group">
                                     <div className="relative">
                                         <div
@@ -259,7 +282,7 @@ export default function Navbar(){
                                     <div className="hidden lg:flex flex-col items-start">
                                         <span
                                             className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-200">{showUser.name}</span>
-                                        <span className="text-xs text-gray-500">Admin</span>
+                                        <span className="text-xs text-gray-500">Dashboard</span>
                                     </div>
                                     <i className="fas fa-chevron-down text-xs text-gray-500 hidden lg:inline transition-transform duration-200 group-hover:text-blue-600"></i>
                                 </button>
@@ -304,7 +327,7 @@ export default function Navbar(){
                                         Sign out
                                     </div>
                                 </div>
-                            </div>
+                            </div> : <Link href={'/login'}><button className={'bg-red-500 p-2 rounded-4xl text-white hover:bg-green-500 transform duration-150 '}>Login</button></Link>}
 
                             <button id="mobile-menu-button"
                                     className="md:hidden p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100 transition-colors duration-200">
