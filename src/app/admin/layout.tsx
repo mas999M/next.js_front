@@ -1,12 +1,12 @@
-import { Outfit } from 'next/font/google';
+// import { Outfit } from 'next/font/google';
 import { ThemeProvider } from '../context/ThemeContext';
 import { SidebarProvider } from '../context/SidebarContext';
 
 
 
-const outfit = Outfit({
-  subsets: ["latin"],
-});
+// const outfit = Outfit({
+//   subsets: ["latin"],
+// });
 
 export default function RootLayout({
   children,

@@ -1,12 +1,10 @@
 'use client'
 
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import Cookies from "js-cookie";
-import {useRouter} from "next/navigation";
 
 export default function UpdateUser() {
 
-    const router = useRouter();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [bio, setBio] = useState('');
@@ -29,9 +27,9 @@ export default function UpdateUser() {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
 
 
-    const [showUser, setShowUser] = useState([]);
-    const [showAvatar, setShowAvatar] = useState('');
-    const [updated , setUpdated] = useState(false);
+    const [showUser] = useState([]);
+    const [showAvatar] = useState('');
+    const [setUpdated] = useState(false);
 
 
     const handleSubmit = async (e) => {

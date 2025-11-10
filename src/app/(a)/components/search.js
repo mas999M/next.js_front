@@ -1,7 +1,6 @@
 "use client"
 
 import {useState} from "react";
-import {useSearch} from "./searchContext";
 import Cookies from "js-cookie";
 
 export default function Search()
