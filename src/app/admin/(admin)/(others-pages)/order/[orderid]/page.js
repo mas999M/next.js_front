@@ -3,7 +3,6 @@
 import {useParams} from "next/navigation";
 import {useEffect, useState} from "react";
 import {Table, TableBody, TableCell, TableHeader, TableRow} from "../../../../../components/ui/table";
-import Image from "next/image";
 import Badge from "../../../../../components/ui/badge/Badge";
 
 export default function OrderItems()

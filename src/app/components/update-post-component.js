@@ -12,7 +12,7 @@ export default function UpdatePostComponent()
     const [tableData, setTableData] = useState([]);
     const router = useRouter();
 
-    const {updateProduct , setUpdateProduct} = useUpdate();
+    const {updateProduct } = useUpdate();
     console.log('admin update post ' , updateProduct);
 
     useEffect(() => {

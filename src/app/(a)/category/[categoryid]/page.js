@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 import {useCart} from "../../components/cartContext";
 import {useParams, useRouter} from "next/navigation";
-import {router} from "next/client";
 
 export default function AllProduct() {
     const params = useParams();
@@ -17,8 +16,6 @@ export default function AllProduct() {
     console.log('this is cart = ' , cart);
 
     const [allProducts, setAllProducts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [lastPage, setLastPage] = useState(1);
     // const productsPerPage = 10;
     const [name , setName] = useState("");
 
@@ -217,36 +214,7 @@ export default function AllProduct() {
                 })}
             </div>
 
-            {/*</div>*/}
 
-             {/*Pagination*/}
-            {/*<div className="flex justify-center mt-8 gap-2">*/}
-            {/*    <button*/}
-            {/*        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}*/}
-            {/*        disabled={currentPage === 1}*/}
-            {/*        className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"*/}
-            {/*    >*/}
-            {/*        Prev*/}
-            {/*    </button>*/}
-
-            {/*    {[...Array(lastPage)].map((_, idx) => (*/}
-            {/*        <button*/}
-            {/*            key={idx}*/}
-            {/*            onClick={() => setCurrentPage(idx + 1)}*/}
-            {/*            className={`px-3 py-1 rounded ${currentPage === idx + 1 ? "bg-red-500 text-white" : "bg-gray-200"}`}*/}
-            {/*        >*/}
-            {/*            {idx + 1}*/}
-            {/*        </button>*/}
-            {/*    ))}*/}
-
-            {/*    <button*/}
-            {/*        onClick={() => setCurrentPage(prev => Math.min(prev + 1, lastPage))}*/}
-            {/*        disabled={currentPage === lastPage}*/}
-            {/*        className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"*/}
-            {/*    >*/}
-            {/*        Next*/}
-            {/*    </button>*/}
-            {/*</div>*/}
         </>
     );
 }

@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import {useState, useEffect, useContext} from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {LoginContext, LoginProvider, useLogin} from "./LoginContext";
+import {LoginContext} from "./LoginContext";
 
 export default function Login() {
     const router = useRouter();
@@ -13,9 +13,8 @@ export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState();
+    const [ setMessage] = useState();
     const {logged , setLogged} = useContext(LoginContext);
-    // const [logged , setToggle] = useContext(LoginContext);
 
 
     useEffect(() => {
@@ -121,7 +120,7 @@ export default function Login() {
                             Login
                         </button>
                     </form>
-                    <p>If you're new here, click to <Link className={'text-red-400'} href={'/register'}>Register</Link></p>
+                    <p>If  new here, click to <Link className={'text-red-400'} href={'/register'}>Register</Link></p>
                 </div>
             </section>
         </>

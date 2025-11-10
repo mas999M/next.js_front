@@ -1,9 +1,9 @@
 'use client'
 
 import Link from "next/link";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
-import {LoginContext, useLogin} from "./LoginContext";
+import { useLogin} from "./LoginContext";
 import {useCart} from "./cartContext";
 
 export default function Navbar(){

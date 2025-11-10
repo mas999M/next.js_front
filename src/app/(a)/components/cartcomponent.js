@@ -1,7 +1,5 @@
 "use client"
 
-// import {useEffect, useState} from "react";
-// import {fetch} from "next/dist/compiled/@edge-runtime/primitives";
 import Cookies from "js-cookie";
 
 import {useEffect, useState} from "react";
@@ -9,41 +7,9 @@ import {useEffect, useState} from "react";
 export default function CartComponent()
 {
     const xsrfToken = Cookies.get("XSRF-TOKEN");
-    //
-    // const [cart, setCart] = useState([])
-    //
-    // useEffect(() => {
-    //     const show = async () => {
-    //         try{
-    //
-    //             await fetch("https://localhost:8000/sanctum/csrf-cookie",{
-    //                 method: "GET",
-    //                 credentials: "include",
-    //             });
-    //
-    //             const res = await fetch('http://localhost:8000/api/cart' , {
-    //                 method: "GET",
-    //                 headers: {
-    //                     'Accept': 'application/json',
-    //                     'X-XSRF-TOKEN': xsrfToken,
-    //                     'Content-Type': 'application/json',
-    //                 },
-    //                 credentials: "include",
-    //             });
-    //             const data = await res.json();
-    //             setCart(data);
-    //         }catch(e){
-    //             console.log(e)
-    //         }
-    //         show();
-    //     }
-    //
-    //     show();
-    //
-    // }, []);
+
 
     const [cart , setCart] = useState([]);
-    const [link, setLink] = useState();
 
     useEffect(() => {
         const show = async () => {
