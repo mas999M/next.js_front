@@ -337,7 +337,6 @@ const AppSidebar: React.FC = () => {
                 alt="Logo"
                 width={150}
                 height={40}
-                href={'/'}
               />
               <Image
                 className="hidden dark:block"
