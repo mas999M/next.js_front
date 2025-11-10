@@ -22,7 +22,7 @@ export default function AllProduct() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch('http://localhost:8000/api/category/products', {
+                const res = await fetch('https://backend-production-5727.up.railway.app/api/category/products', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -54,12 +54,12 @@ export default function AllProduct() {
         const pid = e.target.productId.value;
 
         try {
-            await fetch("http://localhost:8000/sanctum/csrf-cookie", {
+            await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie", {
                 method: "GET",
                 credentials: "include",
             });
 
-            const res = await fetch(`http://localhost:8000/api/add`, {
+            const res = await fetch(`https://backend-production-5727.up.railway.app/api/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function AllProduct() {
     useEffect(() => {
         const one = async () => {
             try{
-                const res = await fetch(`http://localhost:8000/api/category/${categoryid}`, {
+                const res = await fetch(`https://backend-production-5727.up.railway.app/api/category/${categoryid}`, {
                     method: "get",
                     credentials: "include",
                     headers: {

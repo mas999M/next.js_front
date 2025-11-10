@@ -16,10 +16,10 @@ export default function Orders() {
     useEffect(() => {
         const show = async () => {
             try{
-                await fetch("http://localhost:8000/sanctum/csrf-cookie",{
+                await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie",{
                     credentials: "include",
                 });
-                const res = await fetch("http://localhost:8000/api/admin/order",{
+                const res = await fetch("https://backend-production-5727.up.railway.app/api/admin/order",{
                     method: "GET",
                     headers:{
                         "Content-Type": "application/json",

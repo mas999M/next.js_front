@@ -12,10 +12,10 @@ const [search , setSearch] = useState("");
 const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-        await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+        await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie', {
             credentials: "include",
         })
-        const res = await fetch("http://localhost:8000/api/search", {
+        const res = await fetch("https://backend-production-5727.up.railway.app/api/search", {
             method: "post",
             credentials: "include",
             headers: {

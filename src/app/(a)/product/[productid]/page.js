@@ -36,7 +36,7 @@ export default function SingleProductPage()
         const show = async () => {
             try{
 
-                const res = await fetch(`http://localhost:8000/api/product/${productid}`, {
+                const res = await fetch(`https://backend-production-5727.up.railway.app/api/product/${productid}`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
@@ -61,12 +61,12 @@ export default function SingleProductPage()
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await fetch("http://localhost:8000/sanctum/csrf-cookie", {
+            await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie", {
                 method: "GET",
                 credentials: "include",
             });
 
-            await fetch(`http://localhost:8000/api/add`, {
+            await fetch(`https://backend-production-5727.up.railway.app/api/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

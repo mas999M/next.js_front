@@ -11,10 +11,10 @@ export default function ShowUser() {
     useEffect(() => {
         const show = async () => {
             try {
-                await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+                await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie', {
                     credentials: "include"
                 });
-                const res = await fetch('http://localhost:8000/api/admin/users', {
+                const res = await fetch('https://backend-production-5727.up.railway.app/api/admin/users', {
                     credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
@@ -33,11 +33,11 @@ export default function ShowUser() {
     // فقط همون کاربر انتخاب‌شده ارسال میشه
     const handleSubmit = async (item) => {
         try {
-            await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+            await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie', {
                 credentials: "include",
             });
 
-            const res = await fetch('http://localhost:8000/api/admin/update-users', {
+            const res = await fetch('https://backend-production-5727.up.railway.app/api/admin/update-users', {
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json",

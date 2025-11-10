@@ -17,7 +17,7 @@ export default function OrderItems()
         const find = async () => {
 
             try{
-                const res = await fetch(`http://localhost:8000/api/user/orders/${orderid}`, {
+                const res = await fetch(`https://backend-production-5727.up.railway.app/api/user/orders/${orderid}`, {
                     credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
@@ -39,13 +39,6 @@ export default function OrderItems()
     console.log(orderItems);
     return(
         <>
-            {/*{orderItems.map((item) => {*/}
-            {/*    return (*/}
-            {/*        <div key={item.id}>*/}
-            {/*            */}
-            {/*        </div>*/}
-            {/*    )*/}
-            {/*})}*/}
 
 
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">

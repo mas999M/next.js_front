@@ -20,13 +20,13 @@ export default function RegisterComponent()
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await fetch("http://localhost:8000/sanctum/csrf-cookie" , {
+        await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie" , {
             method: "get",
             credentials: "include",
 
         });
 
-        await fetch("http://localhost:8000/api/register" , {
+        await fetch("https://backend-production-5727.up.railway.app/api/register" , {
             method: "POST",
             body: JSON.stringify({
                 name: name,

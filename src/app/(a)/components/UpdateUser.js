@@ -35,10 +35,10 @@ export default function UpdateUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-           await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+           await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie', {
                credentials: "include",
            });
-           const res =  await fetch('http://localhost:8000/api/user/update', {
+           const res =  await fetch('https://backend-production-5727.up.railway.app/api/user/update', {
 
                credentials: "include",
                method: "POST",
@@ -61,30 +61,6 @@ export default function UpdateUser() {
         }
     }
 
-    // useEffect(()=>{
-    //    const show = async () => {
-    //        try{
-    //            const res = await fetch('http://localhost:8000/api/user', {
-    //                credentials: "include",
-    //                headers: {
-    //                    "Content-Type": "application/json",
-    //                    'Accept': 'application/json'
-    //                }
-    //            });
-    //            const data = await res.json();
-    //            setShowUser(data);
-    //            setShowAvatar(data.avatar);
-    //            if(updated){
-    //                setUpdated(false);
-    //                window.location.reload();
-    //            }
-    //
-    //        }catch (err){
-    //            console.log(err);
-    //        }
-    //    };
-    //    show();
-    // },[updated]);
 
     return (
         <>

@@ -11,7 +11,7 @@ export default  function Register()
     useEffect(() => {
         const ss = async () => {
 
-            const res = await fetch('http://localhost:8000/api/user', {
+            const res = await fetch('https://backend-production-5727.up.railway.app/api/user', {
                 credentials: "include",
             });
             if(res.ok){

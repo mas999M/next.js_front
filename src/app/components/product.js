@@ -40,10 +40,10 @@ export default function Product()
 
         try{
 
-            await fetch('http://localhost:8000/sanctum/csrf-cookie',{
+            await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie',{
                 credentials: "include",
             });
-            await fetch('http://localhost:8000/api/product', {
+            await fetch('https://backend-production-5727.up.railway.app/api/product', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -68,7 +68,7 @@ export default function Product()
     useEffect(() => {
         const category = async () => {
             try{
-                const res = await fetch('http://localhost:8000/api/category', {
+                const res = await fetch('https://backend-production-5727.up.railway.app/api/category', {
                     method: 'get',
                     credentials: "include",
                     headers: {

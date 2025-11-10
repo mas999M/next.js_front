@@ -4,12 +4,12 @@ export default function LogoutComponent(){
     const handleLogout = async (e) => {
         e.preventDefault();
         try{
-            await fetch('http://localhost:8000/sanctum/csrf-cookie',{
+            await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie',{
                 method: "get",
                 credentials: "include",
             });
 
-            await fetch("http://localhost:8000/api/logout" , {
+            await fetch("https://backend-production-5727.up.railway.app/api/logout" , {
                 method: "GET",
                 credentials: 'include',
             });

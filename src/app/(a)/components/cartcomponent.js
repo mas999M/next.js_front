@@ -14,11 +14,11 @@ export default function CartComponent()
     useEffect(() => {
         const show = async () => {
             try{
-                 await fetch("http://localhost:8000/sanctum/csrf-cookie" , {
+                 await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie" , {
                     method: "get",
                      credentials: "include",
                 });
-                 const res = await fetch('http://localhost:8000/api/cart' , {
+                 const res = await fetch('https://backend-production-5727.up.railway.app/api/cart' , {
                      method: "GET",
                      credentials: "include",
                      headers: {
@@ -43,13 +43,13 @@ export default function CartComponent()
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const res = await fetch("http://localhost:8000/sanctum/csrf-cookie", {
+            const res = await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie", {
                 method: "GET",
                 credentials: "include",
             });
 
             if(res){
-                const response = await fetch('http://localhost:8000/api/checkout' , {
+                const response = await fetch('https://backend-production-5727.up.railway.app/api/checkout' , {
                 method: "GET",
                 credentials: "include",
                 headers: {
