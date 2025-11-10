@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
 import { useSearchParams } from "next/navigation";
 
 export default function SuccessClient() {
     const params = useSearchParams();
-    const refId = params.get("ref_id");
+    const message = params.get("message");
 
     return (
         <div>
-            <h1>پرداخت موفق 🎉</h1>
-            {refId && <p>کد تراکنش شما: {refId}</p>}
+            <h1>پرداخت ناموفق ❌</h1>
+            {message && <p>پیام خطا: {message}</p>}
         </div>
     );
 }

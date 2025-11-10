@@ -1,9 +1,10 @@
-import FailClient from "./failClient";
+import { Suspense } from "react";
+import FailClient from "./FailClient";
 
 export default function FailPage() {
-
-
     return (
-       <FailClient/>
+        <Suspense fallback={<div>در حال بارگذاری...</div>}>
+            <FailClient />
+        </Suspense>
     );
 }
