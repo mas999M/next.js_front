@@ -1,10 +1,12 @@
 "use client";
-import Checkbox from "@/components/form/input/Checkbox";
-import Input from "@/components/form/input/InputField";
-import Label from "@/components/form/Label";
-import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
+
 import Link from "next/link";
 import React, { useState } from "react";
+import {ChevronLeftIcon, EyeCloseIcon} from "@/app/icons";
+import Label from "@/app/components/form/Label";
+import Input from "@/app/components/form/input/InputField";
+import EyeIcon from "next/dist/client/components/react-dev-overlay/ui/icons/eye-icon";
+import Checkbox from "@/app/components/form/input/Checkbox";
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
