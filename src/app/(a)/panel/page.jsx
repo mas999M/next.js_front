@@ -14,10 +14,10 @@ export default function Panel()
 
     useEffect(() => {
         const show = async() => {
-            await fetch('http://localhost:8000/sanctum/csrf-cookie',{
+            await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie',{
                 credentials: "include",
             });
-            const res = await fetch("http://localhost:8000/api/user",{
+            const res = await fetch("https://backend-production-5727.up.railway.app/api/user",{
                 credentials: "include",
                 headers: {
                     "Content-Type": "application/json",

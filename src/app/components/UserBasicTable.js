@@ -12,7 +12,7 @@ export default function UserBasicTable() {
     useEffect(() => {
         const users = async () => {
             try{
-                const res = await fetch("http://localhost:8000/api/admin/users",{
+                const res = await fetch("https://backend-production-5727.up.railway.app/api/admin/users",{
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"

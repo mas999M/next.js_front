@@ -36,7 +36,7 @@ export default function SingleUpdateProduct()
     useEffect(() => {
         const show = async () => {
             try{
-                const res = await fetch(`http://localhost:8000/api/product/${updateid}`, {
+                const res = await fetch(`https://backend-production-5727.up.railway.app/api/product/${updateid}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -66,10 +66,10 @@ export default function SingleUpdateProduct()
         e.preventDefault();
 
         try{
-            await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+            await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie', {
                 credentials: "include",
             });
-            const res = await fetch(`http://localhost:8000/api/product/update/${updateid}`, {
+            const res = await fetch(`https://backend-production-5727.up.railway.app/api/product/update/${updateid}`, {
                 method: "POST",
                 headers: {
 

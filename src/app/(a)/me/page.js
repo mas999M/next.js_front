@@ -7,7 +7,7 @@ export default function Me()
     const [user , setUser] = useState({});
    useEffect(()=> {
        const user = async () => {
-           const res = await fetch("http://localhost:8000/api/me",{
+           const res = await fetch("https://backend-production-5727.up.railway.app/api/me",{
                credentials: "include",
            });
            const data = await res.json();

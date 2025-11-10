@@ -17,7 +17,7 @@ export default function OrderItems()
         const find = async () => {
 
             try{
-                const res = await fetch(`http://localhost:8000/api/admin/orders/${orderid}`, {
+                const res = await fetch(`https://backend-production-5727.up.railway.app/api/admin/orders/${orderid}`, {
                     credentials: "include",
                     headers: {
                         "Content-Type": "application/json",

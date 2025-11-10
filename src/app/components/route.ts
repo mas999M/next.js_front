@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 export async function GET() {
     try {
         // ابتدا CSRF cookie از Laravel بگیریم
-        const csrfRes = await fetch("http://localhost:8000/sanctum/csrf-cookie", {
+        const csrfRes = await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie", {
             credentials: "include",
         });
 
         const cookies = csrfRes.headers.get("set-cookie") ?? "";
 
         // درخواست user با همان cookie
-        const userRes = await fetch("http://localhost:8000/api/user", {
+        const userRes = await fetch("https://backend-production-5727.up.railway.app/api/user", {
             headers: {
                 "Accept": "application/json",
                 "Cookie": cookies,

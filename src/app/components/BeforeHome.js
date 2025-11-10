@@ -12,10 +12,10 @@ export default function BeforeHome() {
     useEffect(() => {
         const effect = async () => {
             try{
-                await fetch('http://localhost:8000/sanctum/csrf-cookie',{
+                await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie',{
                     credentials: "include",
                 });
-                const res = await fetch('http://localhost:8000/api/user',{
+                const res = await fetch('https://backend-production-5727.up.railway.app/api/user',{
                     method: 'GET',
                     credentials: 'include',
                     headers: {
