@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import FailClient from "./FailClient";
+import FailClient from "./failClient";
 
 export default function FailPage() {
     return (
