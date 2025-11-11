@@ -34,7 +34,7 @@ export default function Navbar(){
 
     useEffect(() => {
         const profile = async () => {
-            const res = await fetch("https://backend-production-5727.up.railway.app/api/user",{
+            const res = await fetch("https://backend-production-c2a6.up.railway.app/api/user",{
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export default function Navbar(){
     useEffect(()=>{
         const show = async () => {
             try{
-                const res = await fetch('https://backend-production-5727.up.railway.app/api/user', {
+                const res = await fetch('https://backend-production-c2a6.up.railway.app/api/user', {
                     credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export default function Navbar(){
     useEffect(()=>{
         const showCategory = async () => {
             try{
-                const res = await fetch("https://backend-production-5727.up.railway.app/api/category",{
+                const res = await fetch("https://backend-production-c2a6.up.railway.app/api/category",{
                     credentials:'include',
                 });
                 const data =await res.json();
@@ -101,12 +101,12 @@ export default function Navbar(){
     const handleLogout = async (e) => {
         e.preventDefault();
         try{
-            await fetch('https://backend-production-5727.up.railway.app/sanctum/csrf-cookie',{
+            await fetch('https://backend-production-c2a6.up.railway.app/sanctum/csrf-cookie',{
                 method: "get",
                 credentials: "include",
             });
 
-            await fetch("https://backend-production-5727.up.railway.app/api/logout" , {
+            await fetch("https://backend-production-c2a6.up.railway.app/api/logout" , {
                 method: "GET",
                 credentials: 'include',
             });
