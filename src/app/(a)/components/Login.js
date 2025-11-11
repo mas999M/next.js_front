@@ -20,7 +20,7 @@ export default function Login() {
     useEffect(() => {
         const ss = async () => {
 
-            const res = await fetch('https://backend-production-5727.up.railway.app/api/user', {
+            const res = await fetch('https://backend-production-c2a6.up.railway.app/api/user', {
                 credentials: "include",
             });
             if(res.ok){
@@ -42,13 +42,13 @@ export default function Login() {
         e.preventDefault();
         try {
             // ارسال درخواست برای دریافت توکن CSRF
-            await fetch("https://backend-production-5727.up.railway.app/sanctum/csrf-cookie", {
+            await fetch("https://backend-production-c2a6.up.railway.app/sanctum/csrf-cookie", {
                 method: "get",
                 credentials: "include",
             });
 
             // ارسال درخواست ورود به سیستم (login)
-            const res = await fetch("https://backend-production-5727.up.railway.app/api/login", {
+            const res = await fetch("https://backend-production-c2a6.up.railway.app/api/login", {
                 method: "POST",
                 credentials: "include",
                 body: JSON.stringify({
